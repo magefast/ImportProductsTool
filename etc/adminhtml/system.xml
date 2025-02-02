@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="importTool" translate="label" type="text" sortOrder="999" showInDefault="1" showInWebsite="1"
+                 showInStore="0">
+            <class>separator-top</class>
+            <label>Import Products Tool</label>
+            <tab>service</tab>
+            <resource>Strekoza_ImportTool::config</resource>
+            <group id="settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+                <label>Import Products Tool Settings</label>
+                <field id="status" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="type" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Import Source</label>
+                    <source_model>Strekoza\ImportTool\Model\Config\Source\Type</source_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="link_url_file" type="text" sortOrder="30" translate="label" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Url link to Products Import file</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="type">1</field>
+                    </depends>
+                </field>
+                <field id="path_internal_file" type="text" sortOrder="30" translate="label" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Full Server Path to Products Import file</label>
+                    <validate>required-entry</validate>
+                    <comment model="Strekoza\ImportTool\Block\Adminhtml\System\PathInternalFileComment" />
+                    <depends>
+                        <field id="type">2</field>
+                    </depends>
+                </field>
+                <field id="path_media_folder" type="text" sortOrder="40" translate="label" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Full Server Path to Import Media Dir</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="type">2</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,43 @@
+<?php
+$helper = $this->helper('Strekoza\ImportTool\Helper\Data');
+$processingImportFileUrl = $helper->getProcessingImportFileUrl();
+$processingImportImagesFileUrl = $helper->getProcessingImportProductImagesUrl();
+
+$shortImportFiles = $helper->getContentOfTempImportDir();
+$countMaxRow = $helper->getCountMaxRow();
+?>
+<br>
+<br>
+<h2><?= __('Run Import process') ?></h2>
+<hr>
+<button type="button" onclick='window.open("<?= $processingImportFileUrl ?>","_parent");'>
+    <?= __('Start Processing Import File') ?>
+</button>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2><?= __('Import New Product - %1 per time', $countMaxRow) ?></h2>
+<hr/>
+<br>
+<br>
+<?php if (count($shortImportFiles) > 0):
+    foreach ($shortImportFiles as $key => $value):
+        $shortImportFileUrl = $helper->getShortImportFileUrl($value['file_name']); ?>
+        <br>
+        <button type="button" onclick='window.open("<?= $shortImportFileUrl ?>","_parent");'>
+            <?= __('Run Butch # %1', $value['file_num']) ?></button>
+        <br>
+    <?php endforeach; else: ?>
+    <strong style="color: red"><?= __('No import data for import') ?></strong>
+<?php endif; ?>
+<br>
+<br>
+<h2><?= __('Import Images for Imported Products - %1 per time', $countMaxRow) ?></h2>
+<hr>
+<button type="button" onclick='window.open("<?= $processingImportImagesFileUrl ?>","_parent");'>
+    <?= __('Start Import Product Images') ?>
+</button>
+<br>
+<br>
